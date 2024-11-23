@@ -48,6 +48,29 @@ class Game {
     );
     return damageDealt;
   }
+  playTurn() {
+    const attacker = this.turn;
+    const defender = attacker === this.playerA ? this.playerB : this.playerA;
+
+    console.log(
+      chalk.magenta.bold(
+        `⚔️ ${attacker.name} takes the offensive! Targeting ${defender.name}.`
+      )
+    );
+    this.computeDamage(attacker, defender);
+
+    if (!defender.isAlive()) {
+      console.log(
+        chalk.bgRed.bold(
+          `💀 ${defender.name} has fallen! 🏆 ${attacker.name} is victorious!`
+        )
+      );
+      return false;
+    }
+
+    this.turn = defender;
+    return true;
+  }
 }
 
 export default Game;
