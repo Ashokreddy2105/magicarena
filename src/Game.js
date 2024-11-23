@@ -1,3 +1,5 @@
+import chalk from "chalk";
+import figlet from "figlet";
 class Game {
   constructor(playerA, playerB) {
     this.playerA = playerA;
