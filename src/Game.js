@@ -71,6 +71,57 @@ class Game {
     this.turn = defender;
     return true;
   }
+
+  start() {
+    console.log(chalk.yellow(figlet.textSync("Magical Arena")));
+    console.log(
+      chalk.yellow.bold(
+        "🏟️ Welcome to the Magical Arena! Let the battle begin!\n"
+      )
+    );
+
+    console.log(chalk.bold.underline("🎭 Player Stats:"));
+    console.log(
+      chalk.redBright.bold(
+        `🔴 ${this.playerA.name} - Health: ${this.playerA.health}, Strength: ${this.playerA.strength}, Attack: ${this.playerA.attack}`
+      )
+    );
+    console.log(
+      chalk.blueBright.bold(
+        `🔵 ${this.playerB.name} - Health: ${this.playerB.health}, Strength: ${this.playerB.strength}, Attack: ${this.playerB.attack}`
+      )
+    );
+    console.log(
+      chalk.gray("------------------------------------------------------------")
+    );
+
+    while (this.playerA.isAlive() && this.playerB.isAlive()) {
+      if (!this.playTurn()) break;
+
+      console.log(chalk.bold("📊 Current Status:"));
+      console.log(
+        chalk.redBright(
+          `🔴 ${this.playerA.name} - Health: ${this.playerA.health}`
+        )
+      );
+      console.log(
+        chalk.blueBright(
+          `🔵 ${this.playerB.name} - Health: ${this.playerB.health}`
+        )
+      );
+      console.log(
+        chalk.greenBright(
+          "============================================================\n"
+        )
+      );
+    }
+
+    console.log(
+      chalk.bold.bgYellow(
+        "🎉 Game Over! Thank you for watching this epic battle!"
+      )
+    );
+  }
 }
 
 export default Game;
